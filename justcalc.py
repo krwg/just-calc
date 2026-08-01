@@ -120,7 +120,7 @@ def update_theme():
 def about_window():
     about_text = """
     JustCalc
-    Moonstone 1.2
+    Moonstone 1.3
 
     Developer: krwg
     Year: 2025
