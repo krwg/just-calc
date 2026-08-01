@@ -180,6 +180,24 @@ def set_decimal_precision(precision):
     global decimal_precision
     decimal_precision = precision
 
+
+def on_key_press(event):
+    key = event.keysym
+    char = event.char
+    if char and char in "0123456789.+-*/()":
+        button_click(char)
+        return "break"
+    if key in ("Return", "KP_Enter"):
+        button_equal()
+        return "break"
+    if key == "Escape":
+        button_clear()
+        return "break"
+    if key == "BackSpace":
+        button_delete()
+        return "break"
+
+
 def close_window():
     window.destroy()
 
@@ -302,5 +320,5 @@ history_text = scrolledtext.ScrolledText(history_frame, width=30, height=10, fon
 history_text.pack(expand=True, fill="both")
 
 update_theme()
-#krwg
+window.bind("<Key>", on_key_press)
 window.mainloop()
