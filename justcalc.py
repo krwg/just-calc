@@ -10,8 +10,9 @@
 
 
 import tkinter as tk
-from tkinter import messagebox
 from tkinter import scrolledtext
+
+from evaluate import evaluate
 
 #krwg
 
@@ -31,15 +32,15 @@ def button_delete():
 
 def button_equal():
     try:
-        result = eval(entry.get())
+        expression = entry.get()
+        result = evaluate(expression)
         entry.delete(0, tk.END)
         entry_text = f"{result:.{decimal_precision}f}"
         entry.insert(0, entry_text)
-        #krwg
         if history_enabled:
-            history_text.insert(tk.END, f"{entry.get()} = {entry_text}\n")
+            history_text.insert(tk.END, f"{expression} = {entry_text}\n")
             history_text.see(tk.END)
-    except (SyntaxError, NameError, ZeroDivisionError):
+    except (SyntaxError, ValueError, ZeroDivisionError, TypeError):
         entry.delete(0, tk.END)
         entry.insert(0, "Error")
 
