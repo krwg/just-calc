@@ -1,0 +1,2 @@
+# JustCalc uses only the Python standard library (tkinter).
+# Optional: install nothing for runtime.
